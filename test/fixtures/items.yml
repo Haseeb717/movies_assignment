@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  plot: MyString
+  type: 
+  serial_number: 1
+
+two:
+  title: MyString
+  plot: MyString
+  type: 
+  serial_number: 1
