@@ -3,7 +3,7 @@ module Api
 		class PurchaseController < ApplicationController
 			def buy
 				response = Purchase.add_library(purchase_params)
-				render json: {message: response}, :status=>200
+				render json: {message: response}
 			end
 
 			private

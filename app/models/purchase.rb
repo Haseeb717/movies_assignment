@@ -13,7 +13,10 @@ class Purchase < ApplicationRecord
 
   	params[:purchase_at] = Time.now
   	purchase[:expire_at] = Time.now + 2.days
+
   	purchase = Purchase.create(params)
+  	
+  	return {status: 404,message "Not Valid Attributes"} if purchase.error_messages.present?
   	return {status: 200,message: "Created Succesfully"}
   end
 
