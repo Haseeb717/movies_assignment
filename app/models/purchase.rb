@@ -3,7 +3,7 @@ class Purchase < ApplicationRecord
   belongs_to :user
   belongs_to :purchase_option
 
-  validate_presence_of :item_id,:user_id,:purchase_option_id
+  validates_presence_of :item_id,:user_id,:purchase_option_id
 
   VALIDITY = 1.day
 
@@ -12,11 +12,11 @@ class Purchase < ApplicationRecord
   	return {status: 403,message: "Expired VALIDITY not reached"}
 
   	params[:purchase_at] = Time.now
-  	purchase[:expire_at] = Time.now + 2.days
+  	params[:expire_at] = Time.now + 2.days
 
   	purchase = Purchase.create(params)
-  	
-  	return {status: 404,message "Not Valid Attributes"} if purchase.error_messages.present?
+
+  	return {status: 404,message: "Not Valid Attributes"} if purchase.error_messages.present?
   	return {status: 200,message: "Created Succesfully"}
   end
 
