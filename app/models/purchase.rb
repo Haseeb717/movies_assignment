@@ -3,12 +3,16 @@ class Purchase < ApplicationRecord
   belongs_to :user
   belongs_to :purchase_option
 
-  VALIDITY = 3.days
+  validate_presence_of :item_id,:user_id,:purchase_option_id
+
+  VALIDITY = 1.day
 
   def add_library(params)
   	valid = check_validity(params)
   	return {status: 403,message: "Expired VALIDITY not reached"}
 
+  	params[:purchase_at] = Time.now
+  	purchase[:expire_at] = Time.now + 2.days
   	purchase = Purchase.create(params)
   	return {status: 200,message: "Created Succesfully"}
   end
@@ -22,9 +26,7 @@ class Purchase < ApplicationRecord
   		if Time.current < (expire_at + VALIDITY)
   			return false
   		end
-  		return true
-  	else
-
   	end
+  	return true
   end
 end
