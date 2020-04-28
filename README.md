@@ -6,14 +6,19 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
-*2.5.3
+
+2.5.3
 
 * System dependencies
-*Ruby on Rails
+
+Ruby on Rails
 
 * Database creation
-*rake db:create
+
+rake db:create
 
 * Database initialization
-*rake db:migrate
-*rake db:seed
+
+rake db:migrate
+
+rake db:seed
