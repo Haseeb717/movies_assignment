@@ -1,6 +1,10 @@
 module Api
 	module V1
 		class PurchaseController < ApplicationController
+
+			# 4. An endpoint for a user to perform a purchase of a content.
+			# /api/v1/buy 
+
 			def buy
 				response = Purchase.add_library(purchase_params)
 				render json: {message: response}
