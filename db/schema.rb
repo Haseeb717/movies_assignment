@@ -12,35 +12,35 @@
 
 ActiveRecord::Schema.define(version: 2020_04_26_213041) do
 
-  create_table "episodes", force: :cascade do |t|
+  create_table "episodes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.string "plot"
-    t.integer "item_id"
+    t.bigint "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_episodes_on_item_id"
   end
 
-  create_table "items", force: :cascade do |t|
+  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.string "plot"
-    t.string "type"
+    t.string "item_type"
     t.integer "serial_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "purchase_options", force: :cascade do |t|
+  create_table "purchase_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.float "price"
     t.string "video_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "purchases", force: :cascade do |t|
-    t.integer "item_id"
-    t.integer "user_id"
-    t.integer "purchase_option_id"
+  create_table "purchases", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "user_id"
+    t.bigint "purchase_option_id"
     t.datetime "purchased_at"
     t.datetime "expire_at"
     t.datetime "created_at", null: false
@@ -50,10 +50,14 @@ ActiveRecord::Schema.define(version: 2020_04_26_213041) do
     t.index ["user_id"], name: "index_purchases_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "episodes", "items"
+  add_foreign_key "purchases", "items"
+  add_foreign_key "purchases", "purchase_options"
+  add_foreign_key "purchases", "users"
 end

@@ -1,11 +1,11 @@
 class ItemPresenter < Presenter
 
 	def as_json(*)
-		if @object.type == "Season"
+		if @object.item_type == "Season"
 			{
 				title: @object.title
 				plot: @object.plot
-				type: @object.type
+				item_type: @object.item_type
 				serial_number: @object.serial_number
 				episodes: @object.episodes.map {|e| EpisodePresenter.new(e) }
 			}
@@ -13,7 +13,7 @@ class ItemPresenter < Presenter
 			{
 				title: @object.title
 				plot: @object.plot
-				type: @object.type
+				item_type: @object.item_type
 			}
 		end
 		
